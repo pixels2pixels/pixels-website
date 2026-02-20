@@ -9,11 +9,11 @@ import { formatDate } from '@/lib/utils'
 import CTASection from '@/components/sections/CTASection'
 
 interface NewsPageProps {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
 }
 
 export async function generateMetadata({ params }: NewsPageProps): Promise<Metadata> {
-  const { lang } = params
+  const { lang } = await params
   if (!isValidLocale(lang)) return {}
   const locale = lang as Locale
   const dict = await getDictionary(locale)
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: NewsPageProps): Promise<Metad
 }
 
 export default async function NewsPage({ params }: NewsPageProps) {
-  const { lang } = params
+  const { lang } = await params
   if (!isValidLocale(lang)) notFound()
   const locale = lang as Locale
   const dict = await getDictionary(locale)

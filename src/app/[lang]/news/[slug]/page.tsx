@@ -9,7 +9,7 @@ import { formatDate } from '@/lib/utils'
 import CTASection from '@/components/sections/CTASection'
 
 interface NewsPostPageProps {
-  params: { lang: string; slug: string }
+  params: Promise<{ lang: string; slug: string }>
 }
 
 export async function generateStaticParams() {
@@ -17,7 +17,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: NewsPostPageProps): Promise<Metadata> {
-  const { lang, slug } = params
+  const { lang, slug } = await params
   if (!isValidLocale(lang)) return {}
   const locale = lang as Locale
 
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: NewsPostPageProps): Promise<M
 }
 
 export default async function NewsPostPage({ params }: NewsPostPageProps) {
-  const { lang, slug } = params
+  const { lang, slug } = await params
   if (!isValidLocale(lang)) notFound()
   const locale = lang as Locale
   const dict = await getDictionary(locale)

@@ -6,11 +6,11 @@ import { generateSEOMetadata, generateBreadcrumbSchema } from '@/lib/seo'
 import CTASection from '@/components/sections/CTASection'
 
 interface AboutPageProps {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
 }
 
 export async function generateMetadata({ params }: AboutPageProps): Promise<Metadata> {
-  const { lang } = params
+  const { lang } = await params
   if (!isValidLocale(lang)) return {}
   const locale = lang as Locale
   const dict = await getDictionary(locale)
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: AboutPageProps): Promise<Meta
 }
 
 export default async function AboutPage({ params }: AboutPageProps) {
-  const { lang } = params
+  const { lang } = await params
   if (!isValidLocale(lang)) notFound()
   const locale = lang as Locale
   const dict = await getDictionary(locale)
@@ -165,7 +165,6 @@ export default async function AboutPage({ params }: AboutPageProps) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-3xl mx-auto">
             {teamMembers.map((member) => (
               <div key={member.name} className="card-base p-6 text-center">
-                {/* Avatar */}
                 <div className="w-20 h-20 rounded-full bg-brand-blue/10 border-2 border-brand-blue/30 flex items-center justify-center mx-auto mb-4">
                   <span className="text-brand-blue font-black text-2xl">
                     {member.name.charAt(0)}

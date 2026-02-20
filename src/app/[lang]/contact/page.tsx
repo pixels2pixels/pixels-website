@@ -6,11 +6,11 @@ import { generateSEOMetadata } from '@/lib/seo'
 import ContactForm from '@/components/ui/ContactForm'
 
 interface ContactPageProps {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
 }
 
 export async function generateMetadata({ params }: ContactPageProps): Promise<Metadata> {
-  const { lang } = params
+  const { lang } = await params
   if (!isValidLocale(lang)) return {}
   const locale = lang as Locale
   const dict = await getDictionary(locale)
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: ContactPageProps): Promise<Me
 }
 
 export default async function ContactPage({ params }: ContactPageProps) {
-  const { lang } = params
+  const { lang } = await params
   if (!isValidLocale(lang)) notFound()
   const locale = lang as Locale
   const dict = await getDictionary(locale)
