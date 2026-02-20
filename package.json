@@ -1,0 +1,52 @@
+{
+  "name": "pixels2pixels-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Official website for Pixels2Pixels Studio — a creative technology studio specializing in XR, game development, web development, 3D design, and digital marketing.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "xr",
+    "vr",
+    "ar",
+    "game-development",
+    "creative-technology",
+    "studio",
+    "next.js"
+  ],
+  "author": "Pixels2Pixels Studio",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@react-three/drei": "^9.122.0",
+    "@react-three/fiber": "^8.18.0",
+    "clsx": "^2.1.1",
+    "gray-matter": "^4.0.3",
+    "gsap": "^3.14.2",
+    "next": "^14.2.5",
+    "next-mdx-remote": "^5.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^2.6.1",
+    "three": "^0.167.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.33",
+    "@types/react": "^18.3.28",
+    "@types/react-dom": "^18.3.7",
+    "@types/three": "^0.167.2",
+    "autoprefixer": "^10.4.24",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.5",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=18.17.0"
+  }
+}
