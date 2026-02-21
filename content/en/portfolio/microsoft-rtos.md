@@ -8,8 +8,14 @@ tags: ["Motion Graphics", "Microsoft", "Tech", "Corporate Video"]
 featured: true
 ---
 
+## About the Project
+
 A prestigious project produced in collaboration with Microsoft, creating promotional and educational video content for their real-time operating system solutions. Working with a global technology leader of Microsoft's caliber required the highest standards of production quality, brand compliance, and technical accuracy.
 
+## Our Approach
+
 The video series explains complex RTOS concepts through clear visual metaphors, animated diagrams, and dynamic motion graphics that align with Microsoft's design language. Content was produced in multiple languages for global distribution.
+
+## Results & Delivery
 
 Pixels2Pixels Studio's ability to handle technically complex subject matter with visual clarity and production excellence made this collaboration a success, resulting in content deployed across Microsoft's global developer education channels.
