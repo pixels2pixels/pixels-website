@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import HUDOverlay from '@/components/layout/HUDOverlay'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -29,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} dark`}>
       <body className="bg-brand-dark text-brand-white antialiased">
+        <HUDOverlay />
         {children}
       </body>
     </html>
