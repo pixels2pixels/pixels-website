@@ -209,7 +209,7 @@ export default function HeroSection({ dict, locale }: HeroSectionProps) {
       <div
         className="absolute left-0 right-0 z-20 flex items-center justify-center gap-8 sm:gap-16 px-6"
         style={{
-          bottom: '80px',
+          bottom: '110px',
           opacity: mounted ? 1 : 0,
           transition: 'opacity 1.2s ease 0.8s',
         }}
