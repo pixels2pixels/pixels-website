@@ -205,10 +205,11 @@ export default function HeroSection({ dict, locale }: HeroSectionProps) {
         </div>
       </div>
 
-      {/* ── STATS ROW — positioned above scroll indicator ── */}
+      {/* ── STATS ROW — positioned in lower third, well above scroll indicator ── */}
       <div
-        className="absolute bottom-16 left-0 right-0 z-20 flex items-center justify-center gap-8 sm:gap-16 px-6"
+        className="absolute left-0 right-0 z-20 flex items-center justify-center gap-8 sm:gap-16 px-6"
         style={{
+          bottom: '80px',
           opacity: mounted ? 1 : 0,
           transition: 'opacity 1.2s ease 0.8s',
         }}
@@ -235,8 +236,9 @@ export default function HeroSection({ dict, locale }: HeroSectionProps) {
 
       {/* ── SCROLL INDICATOR — alone at very bottom, perfectly centered ── */}
       <div
-        className="absolute bottom-4 left-0 right-0 z-20 flex flex-col items-center gap-1"
+        className="absolute left-0 right-0 z-20 flex flex-col items-center gap-1"
         style={{
+          bottom: '18px',
           opacity: mounted ? 1 : 0,
           transition: 'opacity 1.4s ease 1s',
         }}
