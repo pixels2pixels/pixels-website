@@ -24,7 +24,12 @@ export function getPortfolioProjects(locale: Locale): PortfolioProject[] {
       // Support both old (thumbnail/services) and new (image/tags/category) frontmatter
       const thumbnail = data.thumbnail || data.image || '/images/portfolio/placeholder.jpg'
       const services = data.services || data.tags || (data.category ? [data.category] : [])
-      const shortDescription = data.shortDescription || data.excerpt || content.trim().split('\n')[0].substring(0, 160)
+      // Find first non-heading, non-empty line for short description
+      const firstParagraph = content.trim().split('\n').find((line) => {
+        const t = line.trim()
+        return t.length > 20 && !t.startsWith('#') && !t.startsWith('---')
+      }) || ''
+      const shortDescription = data.shortDescription || data.excerpt || firstParagraph.substring(0, 200)
 
       return {
         slug,
@@ -55,7 +60,12 @@ export function getPortfolioProject(locale: Locale, slug: string): PortfolioProj
 
   const thumbnail = data.thumbnail || data.image || '/images/portfolio/placeholder.jpg'
   const services = data.services || data.tags || (data.category ? [data.category] : [])
-  const shortDescription = data.shortDescription || data.excerpt || content.trim().split('\n')[0].substring(0, 160)
+  // Find first non-heading, non-empty line for short description
+  const firstParagraph = content.trim().split('\n').find((line) => {
+    const t = line.trim()
+    return t.length > 20 && !t.startsWith('#') && !t.startsWith('---')
+  }) || ''
+  const shortDescription = data.shortDescription || data.excerpt || firstParagraph.substring(0, 200)
 
   return {
     slug,
