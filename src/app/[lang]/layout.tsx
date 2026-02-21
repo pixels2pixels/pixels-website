@@ -8,7 +8,7 @@ import Footer from '@/components/layout/Footer'
 
 interface LangLayoutProps {
   children: React.ReactNode
-  params: Promise<{ lang: string }>
+  params: { lang: string }
 }
 
 export async function generateStaticParams() {
@@ -16,7 +16,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: LangLayoutProps): Promise<Metadata> {
-  const { lang } = await params
+  const { lang } = params
   if (!isValidLocale(lang)) return {}
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://pixels2pixels.com'
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: LangLayoutProps): Promise<Met
 }
 
 export default async function LangLayout({ children, params }: LangLayoutProps) {
-  const { lang } = await params
+  const { lang } = params
 
   if (!isValidLocale(lang)) {
     notFound()

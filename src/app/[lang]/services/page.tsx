@@ -7,11 +7,11 @@ import { generateSEOMetadata } from '@/lib/seo'
 import CTASection from '@/components/sections/CTASection'
 
 interface ServicesPageProps {
-  params: Promise<{ lang: string }>
+  params: { lang: string }
 }
 
 export async function generateMetadata({ params }: ServicesPageProps): Promise<Metadata> {
-  const { lang } = await params
+  const { lang } = params
   if (!isValidLocale(lang)) return {}
   const locale = lang as Locale
   const dict = await getDictionary(locale)
@@ -77,7 +77,7 @@ const serviceDescriptions: Record<string, { en: string; sr: string }> = {
 }
 
 export default async function ServicesPage({ params }: ServicesPageProps) {
-  const { lang } = await params
+  const { lang } = params
   if (!isValidLocale(lang)) notFound()
   const locale = lang as Locale
   const dict = await getDictionary(locale)

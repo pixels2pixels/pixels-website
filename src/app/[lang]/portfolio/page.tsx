@@ -8,11 +8,11 @@ import PortfolioGrid from '@/components/ui/PortfolioGrid'
 import CTASection from '@/components/sections/CTASection'
 
 interface PortfolioPageProps {
-  params: Promise<{ lang: string }>
+  params: { lang: string }
 }
 
 export async function generateMetadata({ params }: PortfolioPageProps): Promise<Metadata> {
-  const { lang } = await params
+  const { lang } = params
   if (!isValidLocale(lang)) return {}
   const locale = lang as Locale
   const dict = await getDictionary(locale)
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: PortfolioPageProps): Promise<
 }
 
 export default async function PortfolioPage({ params }: PortfolioPageProps) {
-  const { lang } = await params
+  const { lang } = params
   if (!isValidLocale(lang)) notFound()
   const locale = lang as Locale
   const dict = await getDictionary(locale)

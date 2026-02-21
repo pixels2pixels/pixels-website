@@ -8,7 +8,7 @@ import { getPortfolioProject, getPortfolioProjects } from '@/lib/content'
 import CTASection from '@/components/sections/CTASection'
 
 interface ProjectPageProps {
-  params: Promise<{ lang: string; slug: string }>
+  params: { lang: string; slug: string }
 }
 
 export async function generateStaticParams() {
@@ -16,7 +16,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
-  const { lang, slug } = await params
+  const { lang, slug } = params
   if (!isValidLocale(lang)) return {}
   const locale = lang as Locale
 
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
-  const { lang, slug } = await params
+  const { lang, slug } = params
   if (!isValidLocale(lang)) notFound()
   const locale = lang as Locale
   const dict = await getDictionary(locale)

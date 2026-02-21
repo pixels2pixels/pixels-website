@@ -8,11 +8,11 @@ import { generateSEOMetadata, generateBreadcrumbSchema } from '@/lib/seo'
 import CTASection from '@/components/sections/CTASection'
 
 interface AboutPageProps {
-  params: Promise<{ lang: string }>
+  params: { lang: string }
 }
 
 export async function generateMetadata({ params }: AboutPageProps): Promise<Metadata> {
-  const { lang } = await params
+  const { lang } = params
   if (!isValidLocale(lang)) return {}
   const locale = lang as Locale
   const dict = await getDictionary(locale)
@@ -80,7 +80,7 @@ const testimonials = [
 ]
 
 export default async function AboutPage({ params }: AboutPageProps) {
-  const { lang } = await params
+  const { lang } = params
   if (!isValidLocale(lang)) notFound()
   const locale = lang as Locale
   const dict = await getDictionary(locale)
