@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import type { Locale } from '@/i18n/config'
@@ -15,13 +15,13 @@ function HeroFallback() {
   return (
     <div className="absolute inset-0" style={{ background: '#020408' }}>
       <div
-        className="absolute inset-0 opacity-10"
+        className="absolute inset-0"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(0,170,255,0.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0,170,255,0.3) 1px, transparent 1px)
+            linear-gradient(rgba(0,170,255,0.15) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0,170,255,0.15) 1px, transparent 1px)
           `,
-          backgroundSize: '80px 80px',
+          backgroundSize: '60px 60px',
         }}
       />
     </div>
@@ -40,149 +40,119 @@ export default function HeroSection({ dict, locale }: HeroSectionProps) {
     setMounted(true)
   }, [])
 
+  const fadeIn = (delay: number) => ({
+    opacity: mounted ? 1 : 0,
+    transform: mounted ? 'translateY(0)' : 'translateY(20px)',
+    transition: `opacity 0.9s ease ${delay}s, transform 0.9s ease ${delay}s`,
+  })
+
   return (
     <section
       className="relative w-full overflow-hidden"
-      style={{ height: '100vh', minHeight: '600px' }}
-      id="hero"
+      style={{ height: '100vh', minHeight: '640px' }}
     >
-      {/* Full-screen 3D canvas — absolute background */}
+      {/* ── FULL-SCREEN 3D CANVAS BACKGROUND ── */}
       <div className="absolute inset-0 z-0">
-        {mounted && <HeroScene />}
-        {!mounted && <HeroFallback />}
+        {mounted ? <HeroScene /> : <HeroFallback />}
       </div>
 
-      {/* Very subtle vignette — does NOT block the 3D from filling the screen */}
+      {/* Radial vignette — subtle, doesn't block 3D */}
       <div
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse at center, transparent 40%, rgba(2,4,8,0.55) 100%)',
+          background: 'radial-gradient(ellipse at center, transparent 35%, rgba(2,4,8,0.6) 100%)',
         }}
       />
-      {/* Bottom fade into next section */}
+      {/* Bottom fade */}
       <div
         className="absolute bottom-0 left-0 right-0 z-10 pointer-events-none"
-        style={{ height: '180px', background: 'linear-gradient(to bottom, transparent, #020408)' }}
+        style={{ height: '160px', background: 'linear-gradient(to bottom, transparent, #020408)' }}
       />
 
-      {/* ── CORNER DECORATIONS (cosmix.ai style) ── */}
-      {/* Top-left bracket */}
-      <div className="absolute top-24 left-8 z-20 pointer-events-none opacity-40">
-        <div className="w-8 h-8 border-l border-t" style={{ borderColor: '#00AAFF' }} />
+      {/* ── CORNER BRACKETS ── */}
+      <div className="absolute top-20 left-6 z-20 pointer-events-none opacity-35">
+        <div className="w-7 h-7 border-l-2 border-t-2" style={{ borderColor: '#00AAFF' }} />
       </div>
-      {/* Top-right bracket */}
-      <div className="absolute top-24 right-8 z-20 pointer-events-none opacity-40">
-        <div className="w-8 h-8 border-r border-t" style={{ borderColor: '#00AAFF' }} />
+      <div className="absolute top-20 right-6 z-20 pointer-events-none opacity-35">
+        <div className="w-7 h-7 border-r-2 border-t-2" style={{ borderColor: '#00AAFF' }} />
       </div>
-      {/* Bottom-left bracket */}
-      <div className="absolute bottom-24 left-8 z-20 pointer-events-none opacity-40">
-        <div className="w-8 h-8 border-l border-b" style={{ borderColor: '#00AAFF' }} />
+      <div className="absolute bottom-16 left-6 z-20 pointer-events-none opacity-35">
+        <div className="w-7 h-7 border-l-2 border-b-2" style={{ borderColor: '#00AAFF' }} />
       </div>
-      {/* Bottom-right bracket */}
-      <div className="absolute bottom-24 right-8 z-20 pointer-events-none opacity-40">
-        <div className="w-8 h-8 border-r border-b" style={{ borderColor: '#00AAFF' }} />
+      <div className="absolute bottom-16 right-6 z-20 pointer-events-none opacity-35">
+        <div className="w-7 h-7 border-r-2 border-b-2" style={{ borderColor: '#00AAFF' }} />
       </div>
 
-      {/* ── SIDE LABELS (cosmix.ai style vertical text) ── */}
+      {/* ── SIDE VERTICAL LABELS ── */}
       <div
-        className="absolute left-8 top-1/2 -translate-y-1/2 z-20 pointer-events-none hidden lg:flex flex-col items-center gap-3"
-        style={{ opacity: 0.35 }}
+        className="absolute left-6 top-1/2 -translate-y-1/2 z-20 pointer-events-none hidden lg:flex flex-col items-center gap-3"
+        style={{ opacity: 0.3 }}
       >
-        <div className="w-px h-16" style={{ background: 'linear-gradient(to bottom, transparent, #00AAFF)' }} />
-        <span
-          className="text-xs tracking-widest uppercase"
-          style={{ color: '#00AAFF', writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
-        >
+        <div className="w-px h-14" style={{ background: 'linear-gradient(to bottom, transparent, #00AAFF)' }} />
+        <span className="text-xs tracking-widest uppercase" style={{ color: '#00AAFF', writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
           {locale === 'sr' ? 'Kreativni Studio' : 'Creative Studio'}
         </span>
-        <div className="w-px h-16" style={{ background: 'linear-gradient(to bottom, #00AAFF, transparent)' }} />
+        <div className="w-px h-14" style={{ background: 'linear-gradient(to bottom, #00AAFF, transparent)' }} />
       </div>
-
       <div
-        className="absolute right-8 top-1/2 -translate-y-1/2 z-20 pointer-events-none hidden lg:flex flex-col items-center gap-3"
-        style={{ opacity: 0.35 }}
+        className="absolute right-6 top-1/2 -translate-y-1/2 z-20 pointer-events-none hidden lg:flex flex-col items-center gap-3"
+        style={{ opacity: 0.3 }}
       >
-        <div className="w-px h-16" style={{ background: 'linear-gradient(to bottom, transparent, #00AAFF)' }} />
-        <span
-          className="text-xs tracking-widest uppercase"
-          style={{ color: '#00AAFF', writingMode: 'vertical-rl' }}
-        >
+        <div className="w-px h-14" style={{ background: 'linear-gradient(to bottom, transparent, #00AAFF)' }} />
+        <span className="text-xs tracking-widest uppercase" style={{ color: '#00AAFF', writingMode: 'vertical-rl' }}>
           {locale === 'sr' ? 'Beograd · Srbija' : 'Belgrade · Serbia'}
         </span>
-        <div className="w-px h-16" style={{ background: 'linear-gradient(to bottom, #00AAFF, transparent)' }} />
+        <div className="w-px h-14" style={{ background: 'linear-gradient(to bottom, #00AAFF, transparent)' }} />
       </div>
 
-      {/* ── MAIN CONTENT — perfectly centered ── */}
-      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-6">
+      {/* ── MAIN LAYOUT: flex column, perfectly centered, no absolute positioning ── */}
+      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center">
 
         {/* Studio label */}
-        <div
-          className="flex items-center gap-3 mb-8"
-          style={{
-            opacity: mounted ? 1 : 0,
-            transform: mounted ? 'translateY(0)' : 'translateY(16px)',
-            transition: 'opacity 0.8s ease, transform 0.8s ease',
-          }}
-        >
-          <div className="h-px w-12" style={{ background: 'linear-gradient(to right, transparent, #00AAFF)' }} />
+        <div className="flex items-center gap-3 mb-6" style={fadeIn(0)}>
+          <div className="h-px w-10" style={{ background: 'linear-gradient(to right, transparent, #00AAFF)' }} />
           <span className="text-xs tracking-[0.3em] uppercase font-light" style={{ color: '#00AAFF' }}>
             {locale === 'sr' ? 'Kreativno-Tehnološki Studio' : 'Creative Technology Studio'}
           </span>
-          <div className="h-px w-12" style={{ background: 'linear-gradient(to left, transparent, #00AAFF)' }} />
+          <div className="h-px w-10" style={{ background: 'linear-gradient(to left, transparent, #00AAFF)' }} />
         </div>
 
         {/* Main headline */}
         <h1
-          className="font-black tracking-tight mb-6 leading-none"
+          className="font-black tracking-tight leading-none mb-5"
           style={{
-            fontSize: 'clamp(2.5rem, 7vw, 6rem)',
-            opacity: mounted ? 1 : 0,
-            transform: mounted ? 'translateY(0)' : 'translateY(24px)',
-            transition: 'opacity 0.9s ease 0.15s, transform 0.9s ease 0.15s',
+            fontSize: 'clamp(2.2rem, 6.5vw, 5.5rem)',
+            ...fadeIn(0.15),
           }}
         >
-          <span
-            style={{
-              background: 'linear-gradient(135deg, #ffffff 0%, #00AAFF 50%, #ffffff 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}
-          >
+          <span style={{
+            background: 'linear-gradient(135deg, #ffffff 0%, #00AAFF 50%, #ffffff 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+          }}>
             {dict.hero.tagline}
           </span>
         </h1>
 
         {/* Subtitle */}
         <p
-          className="text-lg sm:text-xl max-w-xl mx-auto mb-10 leading-relaxed font-light"
-          style={{
-            color: 'rgba(180,200,220,0.85)',
-            opacity: mounted ? 1 : 0,
-            transform: mounted ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'opacity 0.9s ease 0.3s, transform 0.9s ease 0.3s',
-          }}
+          className="text-base sm:text-lg max-w-lg mx-auto mb-8 leading-relaxed font-light"
+          style={{ color: 'rgba(180,200,220,0.8)', ...fadeIn(0.3) }}
         >
           {dict.hero.subtitle}
         </p>
 
         {/* CTA Buttons */}
-        <div
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          style={{
-            opacity: mounted ? 1 : 0,
-            transform: mounted ? 'translateY(0)' : 'translateY(16px)',
-            transition: 'opacity 0.9s ease 0.45s, transform 0.9s ease 0.45s',
-          }}
-        >
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12" style={fadeIn(0.45)}>
           <Link
             href={`/${locale}/portfolio`}
-            className="group flex items-center gap-2 px-8 py-4 text-sm font-semibold tracking-wide uppercase transition-all duration-300"
+            className="group flex items-center gap-2 px-7 py-3.5 text-sm font-semibold tracking-wide uppercase transition-all duration-300"
             style={{
               background: 'linear-gradient(135deg, #00AAFF, #0077CC)',
               color: '#ffffff',
               borderRadius: '2px',
-              boxShadow: '0 0 24px rgba(0,170,255,0.35)',
+              boxShadow: '0 0 24px rgba(0,170,255,0.3)',
             }}
           >
             <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -192,7 +162,7 @@ export default function HeroSection({ dict, locale }: HeroSectionProps) {
           </Link>
           <Link
             href={`/${locale}/contact`}
-            className="flex items-center gap-2 px-8 py-4 text-sm font-semibold tracking-wide uppercase transition-all duration-300 hover:border-brand-blue"
+            className="flex items-center gap-2 px-7 py-3.5 text-sm font-semibold tracking-wide uppercase transition-all duration-300"
             style={{
               border: '1px solid rgba(0,170,255,0.4)',
               color: 'rgba(200,220,240,0.9)',
@@ -203,64 +173,64 @@ export default function HeroSection({ dict, locale }: HeroSectionProps) {
             {dict.hero.cta_secondary}
           </Link>
         </div>
+
+        {/* Stats row — inside the flex column, below CTAs */}
+        <div
+          className="flex items-center justify-center gap-8 sm:gap-14"
+          style={fadeIn(0.6)}
+        >
+          {/* Divider line left */}
+          <div className="hidden sm:block h-px w-12" style={{ background: 'linear-gradient(to right, transparent, rgba(0,170,255,0.3))' }} />
+
+          {[
+            { value: '50+', label: locale === 'sr' ? 'Projekata' : 'Projects' },
+            { value: '10+', label: locale === 'sr' ? 'Godina' : 'Years' },
+            { value: '30+', label: locale === 'sr' ? 'Klijenata' : 'Clients' },
+            { value: '24',  label: locale === 'sr' ? 'Stručnjaka' : 'Specialists' },
+          ].map((stat, i) => (
+            <div key={i} className="text-center">
+              <div
+                className="text-lg sm:text-xl font-black"
+                style={{ color: '#00AAFF', textShadow: '0 0 10px rgba(0,170,255,0.5)' }}
+              >
+                {stat.value}
+              </div>
+              <div className="text-xs tracking-widest uppercase mt-0.5" style={{ color: 'rgba(130,160,190,0.6)' }}>
+                {stat.label}
+              </div>
+            </div>
+          ))}
+
+          {/* Divider line right */}
+          <div className="hidden sm:block h-px w-12" style={{ background: 'linear-gradient(to left, transparent, rgba(0,170,255,0.3))' }} />
+        </div>
       </div>
 
-      {/* ── STATS ROW — positioned in lower third, well above scroll indicator ── */}
+      {/* ── SCROLL INDICATOR — absolute, at very bottom center ── */}
       <div
-        className="absolute left-0 right-0 z-20 flex items-center justify-center gap-8 sm:gap-16 px-6"
+        className="absolute bottom-5 left-0 right-0 z-20 flex flex-col items-center gap-1.5 pointer-events-none"
         style={{
-          bottom: '110px',
-          opacity: mounted ? 1 : 0,
-          transition: 'opacity 1.2s ease 0.8s',
+          opacity: mounted ? 0.7 : 0,
+          transition: 'opacity 1.4s ease 1.2s',
         }}
       >
-        {[
-          { value: '50+', label: locale === 'sr' ? 'Projekata' : 'Projects' },
-          { value: '10+', label: locale === 'sr' ? 'Godina' : 'Years' },
-          { value: '30+', label: locale === 'sr' ? 'Klijenata' : 'Clients' },
-          { value: '24', label: locale === 'sr' ? 'Stručnjaka' : 'Specialists' },
-        ].map((stat, i) => (
-          <div key={i} className="text-center">
-            <div
-              className="text-xl sm:text-2xl font-black"
-              style={{ color: '#00AAFF', textShadow: '0 0 12px rgba(0,170,255,0.5)' }}
-            >
-              {stat.value}
-            </div>
-            <div className="text-xs tracking-widest uppercase mt-1" style={{ color: 'rgba(150,180,210,0.6)' }}>
-              {stat.label}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* ── SCROLL INDICATOR — alone at very bottom, perfectly centered ── */}
-      <div
-        className="absolute left-0 right-0 z-20 flex flex-col items-center gap-1"
-        style={{
-          bottom: '18px',
-          opacity: mounted ? 1 : 0,
-          transition: 'opacity 1.4s ease 1s',
-        }}
-      >
-        <span className="text-xs tracking-[0.25em] uppercase" style={{ color: 'rgba(0,170,255,0.55)' }}>
+        <span className="text-xs tracking-[0.25em] uppercase" style={{ color: 'rgba(0,170,255,0.7)' }}>
           {dict.hero.scroll}
         </span>
         <div
           className="w-px"
           style={{
-            height: '32px',
-            background: 'linear-gradient(to bottom, rgba(0,170,255,0.7), transparent)',
+            height: '28px',
+            background: 'linear-gradient(to bottom, rgba(0,170,255,0.8), transparent)',
             animation: 'scrollPulse 2s ease-in-out infinite',
           }}
         />
       </div>
 
-      {/* Scroll pulse keyframe */}
       <style jsx>{`
         @keyframes scrollPulse {
-          0%, 100% { opacity: 0.4; transform: scaleY(1); }
-          50% { opacity: 1; transform: scaleY(1.15); }
+          0%, 100% { opacity: 0.5; transform: scaleY(1); }
+          50% { opacity: 1; transform: scaleY(1.2); }
         }
       `}</style>
     </section>
