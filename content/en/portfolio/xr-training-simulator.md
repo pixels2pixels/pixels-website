@@ -13,13 +13,18 @@ client: "[Placeholder Client]"
 year: 2023
 location: "Belgrade, Serbia"
 thumbnail: "/images/portfolio/xr-training-thumbnail.jpg"
-gallery:
-  - "/images/portfolio/xr-training-1.jpg"
-  - "/images/portfolio/xr-training-2.jpg"
-  - "/images/portfolio/xr-training-3.jpg"
-videos:
-  - "https://www.youtube.com/embed/placeholder"
 featured: true
+gallery:
+  - "/images/portfolio/gallery/xr-training-simulator/gallery-01.jpg"
+  - "/images/portfolio/gallery/xr-training-simulator/gallery-02.jpg"
+  - "/images/portfolio/gallery/xr-training-simulator/gallery-03.jpg"
+  - "/images/portfolio/gallery/xr-training-simulator/gallery-04.jpg"
+  - "/images/portfolio/gallery/xr-training-simulator/gallery-05.jpg"
+  - "/images/portfolio/gallery/xr-training-simulator/gallery-06.jpg"
+  - "/images/portfolio/gallery/xr-training-simulator/gallery-07.jpg"
+  - "/images/portfolio/gallery/xr-training-simulator/gallery-08.jpg"
+videos:
+  - "https://www.youtube.com/embed/sryGNxfxGjM"
 ---
 
 ## Project Overview

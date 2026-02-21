@@ -6,6 +6,13 @@ client: "Municipality of Kovacica"
 image: "/images/portfolio/vr-kovacica.jpg"
 tags: ["Virtual Reality", "Cultural Heritage", "Tourism", "Education"]
 featured: true
+gallery:
+  - "/images/portfolio/gallery/vr-kovacica/gallery-01.jpg"
+  - "/images/portfolio/gallery/vr-kovacica/gallery-02.jpg"
+  - "/images/portfolio/gallery/vr-kovacica/gallery-03.jpg"
+  - "/images/portfolio/gallery/vr-kovacica/gallery-04.jpg"
+videos:
+  - "https://www.youtube.com/watch?v=s1001001001"
 ---
 
 ## About the Project

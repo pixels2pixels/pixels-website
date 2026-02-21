@@ -6,6 +6,8 @@ client: "Cosmic Factions"
 image: "/images/portfolio/cosmicnft.jpg"
 tags: ["Blockchain", "NFT", "Web3", "AI Agents"]
 featured: true
+gallery:
+  - "/images/portfolio/gallery/cosmicfactions-agentnfts/gallery-01.jpg"
 ---
 
 ## About the Project

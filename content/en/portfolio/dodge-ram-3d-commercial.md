@@ -6,6 +6,16 @@ client: "Dodge"
 image: "/images/portfolio/dodge-ram-3d.jpg"
 tags: ["3D Commercial", "Automotive CGI", "VFX", "Advertising"]
 featured: true
+gallery:
+  - "/images/portfolio/gallery/dodge-ram-3d-commercial/gallery-01.jpg"
+  - "/images/portfolio/gallery/dodge-ram-3d-commercial/gallery-02.jpg"
+  - "/images/portfolio/gallery/dodge-ram-3d-commercial/gallery-03.jpg"
+  - "/images/portfolio/gallery/dodge-ram-3d-commercial/gallery-04.jpg"
+  - "/images/portfolio/gallery/dodge-ram-3d-commercial/gallery-05.jpg"
+  - "/images/portfolio/gallery/dodge-ram-3d-commercial/gallery-06.jpg"
+  - "/images/portfolio/gallery/dodge-ram-3d-commercial/gallery-07.jpg"
+videos:
+  - "https://www.youtube.com/embed/qI8smW31AjI"
 ---
 
 ## About the Project

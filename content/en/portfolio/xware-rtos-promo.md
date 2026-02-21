@@ -6,6 +6,16 @@ client: "X-WARE"
 image: "/images/portfolio/xware.jpg"
 tags: ["Motion Graphics", "Tech", "Promotional Video", "B2B"]
 featured: true
+gallery:
+  - "/images/portfolio/gallery/x-ware-rtos-promotional-video-50-booth-display/gallery-01.jpg"
+  - "/images/portfolio/gallery/x-ware-rtos-promotional-video-50-booth-display/gallery-02.jpg"
+  - "/images/portfolio/gallery/x-ware-rtos-promotional-video-50-booth-display/gallery-03.jpg"
+  - "/images/portfolio/gallery/x-ware-rtos-promotional-video-50-booth-display/gallery-04.jpg"
+  - "/images/portfolio/gallery/x-ware-rtos-promotional-video-50-booth-display/gallery-05.jpg"
+  - "/images/portfolio/gallery/x-ware-rtos-promotional-video-50-booth-display/gallery-06.jpg"
+  - "/images/portfolio/gallery/x-ware-rtos-promotional-video-50-booth-display/gallery-07.jpg"
+videos:
+  - "https://www.youtube.com/embed/TIJCDUSQ6Yg"
 ---
 
 ## About the Project

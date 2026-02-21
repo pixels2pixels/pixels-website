@@ -6,6 +6,10 @@ client: "Behaton"
 image: "/images/portfolio/behaton.jpg"
 tags: ["3D Commercial", "Architecture Visualization", "Product Animation"]
 featured: true
+gallery:
+  - "/images/portfolio/gallery/3d-design-and-animation/gallery-01.jpg"
+videos:
+  - "https://www.youtube.com/embed/5k5cwBCxk2Q"
 ---
 
 ## About the Project

@@ -6,6 +6,16 @@ client: "Fruition"
 image: "/images/portfolio/fruition.jpg"
 tags: ["3D Animation", "Product Visualization", "Motion Graphics"]
 featured: true
+gallery:
+  - "/images/portfolio/gallery/fruition-lovers/gallery-01.jpg"
+  - "/images/portfolio/gallery/fruition-lovers/gallery-02.jpg"
+  - "/images/portfolio/gallery/fruition-lovers/gallery-03.jpg"
+  - "/images/portfolio/gallery/fruition-lovers/gallery-04.jpg"
+  - "/images/portfolio/gallery/fruition-lovers/gallery-05.jpg"
+  - "/images/portfolio/gallery/fruition-lovers/gallery-06.jpg"
+  - "/images/portfolio/gallery/fruition-lovers/gallery-07.jpg"
+videos:
+  - "https://www.youtube.com/embed/VdM4zdIps-I"
 ---
 
 ## About the Project

@@ -6,6 +6,8 @@ client: "HSI Professional"
 image: "/images/portfolio/hsi.jpg"
 tags: ["Product Visualization", "3D Animation", "Beauty", "E-commerce"]
 featured: true
+videos:
+  - "https://www.youtube.com/embed/Xpz6v7QtoCI"
 ---
 
 ## About the Project

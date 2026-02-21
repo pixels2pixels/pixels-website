@@ -6,6 +6,16 @@ client: "AXYZ International"
 image: "/images/portfolio/axyz-cnc.jpg"
 tags: ["Video Production", "Industrial", "3D Visualization", "B2B"]
 featured: true
+gallery:
+  - "/images/portfolio/gallery/axyz-cnc-routers/gallery-01.jpg"
+  - "/images/portfolio/gallery/axyz-cnc-routers/gallery-02.jpg"
+  - "/images/portfolio/gallery/axyz-cnc-routers/gallery-03.jpg"
+  - "/images/portfolio/gallery/axyz-cnc-routers/gallery-04.jpg"
+  - "/images/portfolio/gallery/axyz-cnc-routers/gallery-05.jpg"
+  - "/images/portfolio/gallery/axyz-cnc-routers/gallery-06.jpg"
+  - "/images/portfolio/gallery/axyz-cnc-routers/gallery-07.jpg"
+videos:
+  - "https://www.youtube.com/embed/9XrH8KhP7mA"
 ---
 
 ## About the Project

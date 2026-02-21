@@ -6,6 +6,17 @@ client: "Confidential"
 image: "/images/portfolio/1001-night.jpg"
 tags: ["3D Animation", "Visual Effects", "Cinematic", "Unreal Engine"]
 featured: true
+gallery:
+  - "/images/portfolio/gallery/1001-night/gallery-01.jpg"
+  - "/images/portfolio/gallery/1001-night/gallery-02.jpg"
+  - "/images/portfolio/gallery/1001-night/gallery-03.jpg"
+  - "/images/portfolio/gallery/1001-night/gallery-04.jpg"
+  - "/images/portfolio/gallery/1001-night/gallery-05.jpg"
+  - "/images/portfolio/gallery/1001-night/gallery-06.jpg"
+  - "/images/portfolio/gallery/1001-night/gallery-07.jpg"
+  - "/images/portfolio/gallery/1001-night/gallery-08.jpg"
+videos:
+  - "https://www.youtube.com/embed/vys53SvIrzw"
 ---
 
 ## About the Project

@@ -6,6 +6,8 @@ client: "Cosmix"
 image: "/images/portfolio/cosmix.jpg"
 tags: ["Web Development", "Three.js", "React", "Interactive"]
 featured: true
+gallery:
+  - "/images/portfolio/gallery/cosmix/gallery-01.jpg"
 ---
 
 ## About the Project

@@ -6,6 +6,8 @@ client: "Confidential"
 image: "/images/portfolio/xr-corridor.jpg"
 tags: ["XR", "Virtual Reality", "Architecture", "Real-time 3D"]
 featured: true
+videos:
+  - "https://www.youtube.com/embed/sryGNxfxGjM"
 ---
 
 ## About the Project

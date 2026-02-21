@@ -6,6 +6,10 @@ client: "Microsoft"
 image: "/images/portfolio/microsoft-rtos.jpg"
 tags: ["Motion Graphics", "Microsoft", "Tech", "Corporate Video"]
 featured: true
+gallery:
+  - "/images/portfolio/gallery/microsoft-rtos/gallery-01.jpg"
+videos:
+  - "https://www.youtube.com/embed/amMjcOvkNHI"
 ---
 
 ## About the Project

@@ -6,6 +6,16 @@ client: "Red Bull / Alinghi"
 image: "/images/portfolio/redbull.jpg"
 tags: ["XR", "Extended Reality", "Sports", "Interactive Experience"]
 featured: true
+gallery:
+  - "/images/portfolio/gallery/red-bull-alinghi-xr/gallery-01.jpg"
+  - "/images/portfolio/gallery/red-bull-alinghi-xr/gallery-02.jpg"
+  - "/images/portfolio/gallery/red-bull-alinghi-xr/gallery-03.jpg"
+  - "/images/portfolio/gallery/red-bull-alinghi-xr/gallery-04.jpg"
+  - "/images/portfolio/gallery/red-bull-alinghi-xr/gallery-05.jpg"
+  - "/images/portfolio/gallery/red-bull-alinghi-xr/gallery-06.jpg"
+  - "/images/portfolio/gallery/red-bull-alinghi-xr/gallery-07.jpg"
+videos:
+  - "https://www.youtube.com/embed/iIyD1nDozOg?start=28"
 ---
 
 ## About the Project

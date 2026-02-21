@@ -6,6 +6,8 @@ client: "Dodge"
 image: "/images/portfolio/dodge-ram.jpg"
 tags: ["3D Visualization", "Automotive", "Product Rendering", "CGI"]
 featured: true
+videos:
+  - "https://www.youtube.com/embed/qI8smW31AjI"
 ---
 
 ## About the Project

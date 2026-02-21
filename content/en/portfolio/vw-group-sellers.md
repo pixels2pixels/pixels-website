@@ -6,6 +6,8 @@ client: "Volkswagen Group"
 image: "/images/portfolio/vw-group.jpg"
 tags: ["Video Production", "Automotive", "Corporate", "Post-Production"]
 featured: true
+videos:
+  - "https://www.youtube.com/embed/ANrrKrRE30Y"
 ---
 
 ## About the Project

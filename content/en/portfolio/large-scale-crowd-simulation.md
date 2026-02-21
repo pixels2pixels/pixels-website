@@ -6,6 +6,8 @@ client: "Confidential"
 image: "/images/portfolio/crowd.jpg"
 tags: ["VFX", "Crowd Simulation", "Houdini", "Real-time Rendering"]
 featured: true
+videos:
+  - "https://www.youtube.com/embed/NtB7cmRBBDk"
 ---
 
 ## About the Project

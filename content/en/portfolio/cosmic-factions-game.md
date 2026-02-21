@@ -7,6 +7,8 @@ image: "/images/portfolio/cosmic-factions.jpg"
 tags: ["Game Development", "Mobile", "Strategy", "Blockchain", "Unity"]
 featured: true
 industries: ["Gaming", "Blockchain", "Entertainment"]
+videos:
+  - "https://www.youtube.com/embed/L4ANFISRR8k"
 ---
 
 ## About the Project

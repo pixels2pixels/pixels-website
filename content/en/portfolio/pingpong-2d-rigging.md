@@ -6,6 +6,8 @@ client: "PingPong'd"
 image: "/images/portfolio/pingpong.jpg"
 tags: ["2D Animation", "Character Rigging", "Motion Design", "After Effects"]
 featured: true
+videos:
+  - "https://www.youtube.com/embed/n6unYwMftDg"
 ---
 
 ## About the Project
