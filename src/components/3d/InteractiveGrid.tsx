@@ -12,8 +12,8 @@ interface InteractiveGridProps {
 
 export default function InteractiveGrid({
   mouse,
-  size = 30,
-  divisions = 20,
+  size = 40,
+  divisions = 24,
 }: InteractiveGridProps) {
   const groupRef = useRef<THREE.Group>(null)
   const targetRotation = useRef({ x: 0, y: 0 })
@@ -27,9 +27,7 @@ export default function InteractiveGrid({
 
     for (let i = 0; i <= divisions; i++) {
       const pos = -halfSize + i * step
-      // Lines along X axis
       vertices.push(-halfSize, 0, pos, halfSize, 0, pos)
-      // Lines along Z axis
       vertices.push(pos, 0, -halfSize, pos, 0, halfSize)
     }
 
@@ -41,78 +39,41 @@ export default function InteractiveGrid({
     if (!groupRef.current) return
     const time = state.clock.getElapsedTime()
 
-    // Mouse parallax
-    targetRotation.current.x = mouse.y * 0.15
-    targetRotation.current.y = mouse.x * 0.1
+    // Subtle mouse tilt
+    targetRotation.current.x = mouse.y * 0.08
+    targetRotation.current.y = mouse.x * 0.06
 
-    // Smooth lerp
-    currentRotation.current.x += (targetRotation.current.x - currentRotation.current.x) * 0.05
-    currentRotation.current.y += (targetRotation.current.y - currentRotation.current.y) * 0.05
+    currentRotation.current.x += (targetRotation.current.x - currentRotation.current.x) * 0.04
+    currentRotation.current.y += (targetRotation.current.y - currentRotation.current.y) * 0.04
 
-    groupRef.current.rotation.x = -0.4 + currentRotation.current.x
+    // Perspective tilt — grid recedes into the distance at the bottom
+    groupRef.current.rotation.x = -0.55 + currentRotation.current.x
     groupRef.current.rotation.y = currentRotation.current.y
 
-    // Subtle floating
-    groupRef.current.position.y = -3 + Math.sin(time * 0.3) * 0.2
+    // Slow vertical drift
+    groupRef.current.position.y = -4.5 + Math.sin(time * 0.25) * 0.15
   })
 
   return (
     <group ref={groupRef}>
-      {/* Main grid */}
+      {/* Primary grid — fills the lower screen */}
       <lineSegments geometry={gridGeometry}>
         <lineBasicMaterial
           color="#00AAFF"
           transparent
-          opacity={0.12}
+          opacity={0.09}
           depthWrite={false}
         />
       </lineSegments>
 
-      {/* Secondary grid (slightly offset, more transparent) */}
-      <lineSegments geometry={gridGeometry} rotation={[0, Math.PI / 4, 0]} scale={0.7}>
+      {/* Secondary rotated grid — adds depth */}
+      <lineSegments geometry={gridGeometry} rotation={[0, Math.PI / 6, 0]} scale={0.85}>
         <lineBasicMaterial
-          color="#0044AA"
+          color="#0055AA"
           transparent
-          opacity={0.06}
+          opacity={0.05}
           depthWrite={false}
         />
-      </lineSegments>
-
-      {/* Glowing center cross */}
-      <GlowingCross />
-    </group>
-  )
-}
-
-function GlowingCross() {
-  const ref = useRef<THREE.Group>(null)
-
-  useFrame((state) => {
-    if (!ref.current) return
-    const time = state.clock.getElapsedTime()
-    const opacity = 0.4 + Math.sin(time * 2) * 0.2
-    ref.current.children.forEach((child) => {
-      if (child instanceof THREE.LineSegments) {
-        const mat = child.material as THREE.LineBasicMaterial
-        mat.opacity = opacity
-      }
-    })
-  })
-
-  const crossGeometry = useMemo(() => {
-    const geometry = new THREE.BufferGeometry()
-    const vertices = [
-      -5, 0, 0, 5, 0, 0,
-      0, 0, -5, 0, 0, 5,
-    ]
-    geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3))
-    return geometry
-  }, [])
-
-  return (
-    <group ref={ref}>
-      <lineSegments geometry={crossGeometry}>
-        <lineBasicMaterial color="#00CCFF" transparent opacity={0.5} depthWrite={false} />
       </lineSegments>
     </group>
   )

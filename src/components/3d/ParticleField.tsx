@@ -10,7 +10,7 @@ interface ParticleFieldProps {
   spread?: number
 }
 
-export default function ParticleField({ count = 800, spread = 20 }: ParticleFieldProps) {
+export default function ParticleField({ count = 1200, spread = 28 }: ParticleFieldProps) {
   const meshRef = useRef<THREE.Points>(null)
 
   const { positions, sizes, colors } = useMemo(() => {
@@ -19,19 +19,19 @@ export default function ParticleField({ count = 800, spread = 20 }: ParticleFiel
     const colors = new Float32Array(count * 3)
 
     for (let i = 0; i < count; i++) {
-      sizes[i] = Math.random() * 2 + 0.5
+      sizes[i] = Math.random() * 2.5 + 0.3
 
-      // Mix of blue and white particles
-      const isBright = Math.random() > 0.7
+      // 20% bright blue, 80% dim blue-white
+      const isBright = Math.random() > 0.8
       if (isBright) {
-        colors[i * 3] = 0.0      // R
-        colors[i * 3 + 1] = 0.67 // G
-        colors[i * 3 + 2] = 1.0  // B (brand blue)
+        colors[i * 3]     = 0.0
+        colors[i * 3 + 1] = 0.67
+        colors[i * 3 + 2] = 1.0
       } else {
-        const brightness = 0.3 + Math.random() * 0.3
-        colors[i * 3] = brightness * 0.5
-        colors[i * 3 + 1] = brightness * 0.6
-        colors[i * 3 + 2] = brightness
+        const b = 0.15 + Math.random() * 0.25
+        colors[i * 3]     = b * 0.4
+        colors[i * 3 + 1] = b * 0.55
+        colors[i * 3 + 2] = b
       }
     }
 
@@ -42,12 +42,12 @@ export default function ParticleField({ count = 800, spread = 20 }: ParticleFiel
     if (!meshRef.current) return
     const time = state.clock.getElapsedTime()
 
-    // Slow rotation
-    meshRef.current.rotation.y = time * 0.02
-    meshRef.current.rotation.x = Math.sin(time * 0.01) * 0.1
+    // Very slow rotation — feels like drifting through space
+    meshRef.current.rotation.y = time * 0.015
+    meshRef.current.rotation.x = Math.sin(time * 0.008) * 0.08
 
-    // Subtle breathing effect
-    const scale = 1 + Math.sin(time * 0.5) * 0.02
+    // Subtle breathing
+    const scale = 1 + Math.sin(time * 0.4) * 0.015
     meshRef.current.scale.setScalar(scale)
   })
 
@@ -74,10 +74,10 @@ export default function ParticleField({ count = 800, spread = 20 }: ParticleFiel
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.05}
+        size={0.04}
         vertexColors
         transparent
-        opacity={0.7}
+        opacity={0.75}
         sizeAttenuation
         depthWrite={false}
         blending={THREE.AdditiveBlending}

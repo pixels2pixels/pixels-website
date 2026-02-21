@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { detectLowPerformance } from '@/lib/three-utils'
 import ParticleField from './ParticleField'
@@ -27,19 +27,17 @@ export default function HeroScene() {
     return () => window.removeEventListener('mousemove', handleMouseMove)
   }, [])
 
-  // Fallback for low-performance devices
   if (isLowPerf) {
     return (
-      <div className="absolute inset-0 bg-hero-gradient">
-        <div className="absolute inset-0 bg-blue-glow opacity-20" />
+      <div className="absolute inset-0" style={{ background: '#020408' }}>
         <div
-          className="absolute inset-0 opacity-8"
+          className="absolute inset-0 opacity-10"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(0,170,255,0.2) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(0,170,255,0.2) 1px, transparent 1px)
+              linear-gradient(rgba(0,170,255,0.25) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(0,170,255,0.25) 1px, transparent 1px)
             `,
-            backgroundSize: '60px 60px',
+            backgroundSize: '80px 80px',
           }}
         />
       </div>
@@ -47,32 +45,35 @@ export default function HeroScene() {
   }
 
   return (
-    <div className="absolute inset-0">
+    <div className="absolute inset-0" style={{ background: '#020408' }}>
       <Canvas
-        camera={{ position: [0, 0, 8], fov: 60 }}
+        // Wider FOV (75°) + camera pulled back so elements spread across full screen
+        camera={{ position: [0, 0, 10], fov: 75 }}
         dpr={[1, 1.5]}
         performance={{ min: 0.5 }}
         gl={{
           antialias: false,
-          alpha: true,
+          alpha: false,
           powerPreference: 'high-performance',
         }}
-        style={{ background: 'transparent' }}
+        style={{ background: '#020408' }}
       >
-        {/* Ambient light */}
-        <ambientLight intensity={0.2} />
-        <pointLight position={[10, 10, 10]} intensity={0.5} color="#00AAFF" />
-        <pointLight position={[-10, -10, -10]} intensity={0.3} color="#0044AA" />
+        <ambientLight intensity={0.15} />
+        <pointLight position={[12, 8, 8]} intensity={0.4} color="#00AAFF" />
+        <pointLight position={[-12, -8, -8]} intensity={0.25} color="#003388" />
 
-        {/* 3D Components */}
-        <InteractiveGrid mouse={mouse} />
-        <ParticleField count={isLowPerf ? 300 : 800} />
+        {/* Grid — tilted perspective plane filling the bottom half */}
+        <InteractiveGrid mouse={mouse} size={40} divisions={24} />
+
+        {/* Particles spread across full volume */}
+        <ParticleField count={isLowPerf ? 400 : 1200} spread={28} />
+
+        {/* Wireframe shapes distributed across the viewport */}
         <FloatingGeometry mouse={mouse} />
+
+        {/* Network connection lines */}
         <NetworkLines />
       </Canvas>
-
-      {/* CSS gradient overlay to blend with page */}
-      <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/40 via-transparent to-brand-dark/80 pointer-events-none" />
     </div>
   )
 }
