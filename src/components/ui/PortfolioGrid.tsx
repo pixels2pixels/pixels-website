@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import type { PortfolioProject } from '@/types/content'
 import type { Locale } from '@/i18n/config'
 import type { Dictionary } from '@/i18n/dictionaries/en'
@@ -65,17 +66,31 @@ export default function PortfolioGrid({ projects, tags, dict, locale }: Portfoli
             >
               {/* Thumbnail */}
               <div className="relative aspect-video bg-brand-dark-3 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/10 to-transparent" />
-                <div
-                  className="absolute inset-0 opacity-10"
-                  style={{
-                    backgroundImage: `
-                      linear-gradient(rgba(0,170,255,0.5) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(0,170,255,0.5) 1px, transparent 1px)
-                    `,
-                    backgroundSize: '20px 20px',
-                  }}
-                />
+                {project.thumbnail && project.thumbnail !== '/images/portfolio/placeholder.jpg' ? (
+                  <Image
+                    src={project.thumbnail}
+                    alt={project.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                ) : (
+                  <>
+                    <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/10 to-transparent" />
+                    <div
+                      className="absolute inset-0 opacity-10"
+                      style={{
+                        backgroundImage: `
+                          linear-gradient(rgba(0,170,255,0.5) 1px, transparent 1px),
+                          linear-gradient(90deg, rgba(0,170,255,0.5) 1px, transparent 1px)
+                        `,
+                        backgroundSize: '20px 20px',
+                      }}
+                    />
+                  </>
+                )}
+                {/* Overlay gradient on top of image */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 {/* Year badge */}
                 <div className="absolute top-3 right-3 bg-brand-dark/80 backdrop-blur-sm px-2 py-1 rounded text-xs text-brand-blue border border-brand-blue/20">
                   {project.year}
@@ -87,7 +102,7 @@ export default function PortfolioGrid({ projects, tags, dict, locale }: Portfoli
                   </div>
                 )}
                 {/* Hover overlay */}
-                <div className="absolute inset-0 bg-brand-blue/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="absolute inset-0 bg-brand-blue/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <span className="text-white text-sm font-semibold bg-brand-dark/80 px-4 py-2 rounded-lg border border-brand-blue/30">
                     {dict.portfolio.viewProject}
                   </span>

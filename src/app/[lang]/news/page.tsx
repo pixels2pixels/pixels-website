@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { isValidLocale, type Locale } from '@/i18n/config'
 import { getDictionary } from '@/i18n/getDictionary'
@@ -66,23 +67,37 @@ export default async function NewsPage({ params }: NewsPageProps) {
                 >
                   {/* Cover Image */}
                   <div className="relative aspect-video bg-brand-dark-3 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/10 to-transparent" />
-                    <div
-                      className="absolute inset-0 opacity-10"
-                      style={{
-                        backgroundImage: `
-                          linear-gradient(rgba(0,170,255,0.5) 1px, transparent 1px),
-                          linear-gradient(90deg, rgba(0,170,255,0.5) 1px, transparent 1px)
-                        `,
-                        backgroundSize: '20px 20px',
-                      }}
-                    />
+                    {post.coverImage && post.coverImage !== '/images/news/placeholder.jpg' ? (
+                      <Image
+                        src={post.coverImage}
+                        alt={post.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    ) : (
+                      <>
+                        <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/10 to-transparent" />
+                        <div
+                          className="absolute inset-0 opacity-10"
+                          style={{
+                            backgroundImage: `
+                              linear-gradient(rgba(0,170,255,0.5) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0,170,255,0.5) 1px, transparent 1px)
+                            `,
+                            backgroundSize: '20px 20px',
+                          }}
+                        />
+                      </>
+                    )}
+                    {/* Overlay gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                     {/* Category badge */}
                     <div className="absolute top-3 left-3">
                       <span className={`text-xs px-2 py-1 rounded-full font-medium ${
                         post.category === 'Case Study'
-                          ? 'bg-brand-blue/20 text-brand-blue border border-brand-blue/30'
-                          : 'bg-white/10 text-white border border-white/20'
+                          ? 'bg-brand-blue/80 text-white border border-brand-blue/50'
+                          : 'bg-black/60 text-white border border-white/20'
                       }`}>
                         {post.category}
                       </span>

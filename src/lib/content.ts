@@ -21,17 +21,22 @@ export function getPortfolioProjects(locale: Locale): PortfolioProject[] {
       const fileContents = fs.readFileSync(fullPath, 'utf8')
       const { data, content } = matter(fileContents)
 
+      // Support both old (thumbnail/services) and new (image/tags/category) frontmatter
+      const thumbnail = data.thumbnail || data.image || '/images/portfolio/placeholder.jpg'
+      const services = data.services || data.tags || (data.category ? [data.category] : [])
+      const shortDescription = data.shortDescription || data.excerpt || content.trim().split('\n')[0].substring(0, 160)
+
       return {
         slug,
         title: data.title || '',
-        shortDescription: data.shortDescription || '',
+        shortDescription,
         longDescription: content,
-        services: data.services || [],
+        services,
         industries: data.industries || [],
         client: data.client,
-        year: data.year || new Date().getFullYear(),
+        year: parseInt(data.year) || new Date().getFullYear(),
         location: data.location,
-        thumbnail: data.thumbnail || '/images/portfolio/placeholder.jpg',
+        thumbnail,
         gallery: data.gallery || [],
         videos: data.videos || [],
         caseStudyLink: data.caseStudyLink,
@@ -48,17 +53,21 @@ export function getPortfolioProject(locale: Locale, slug: string): PortfolioProj
   const fileContents = fs.readFileSync(filePath, 'utf8')
   const { data, content } = matter(fileContents)
 
+  const thumbnail = data.thumbnail || data.image || '/images/portfolio/placeholder.jpg'
+  const services = data.services || data.tags || (data.category ? [data.category] : [])
+  const shortDescription = data.shortDescription || data.excerpt || content.trim().split('\n')[0].substring(0, 160)
+
   return {
     slug,
     title: data.title || '',
-    shortDescription: data.shortDescription || '',
+    shortDescription,
     longDescription: content,
-    services: data.services || [],
+    services,
     industries: data.industries || [],
     client: data.client,
-    year: data.year || new Date().getFullYear(),
+    year: parseInt(data.year) || new Date().getFullYear(),
     location: data.location,
-    thumbnail: data.thumbnail || '/images/portfolio/placeholder.jpg',
+    thumbnail,
     gallery: data.gallery || [],
     videos: data.videos || [],
     caseStudyLink: data.caseStudyLink,
@@ -81,12 +90,15 @@ export function getNewsPosts(locale: Locale): NewsPost[] {
       const fileContents = fs.readFileSync(fullPath, 'utf8')
       const { data, content } = matter(fileContents)
 
+      // Support both coverImage and image frontmatter fields
+      const coverImage = data.coverImage || data.image || '/images/news/placeholder.jpg'
+
       return {
         slug,
         title: data.title || '',
         date: data.date || '',
-        excerpt: data.excerpt || '',
-        coverImage: data.coverImage || '/images/news/placeholder.jpg',
+        excerpt: data.excerpt || content.trim().split('\n')[0].substring(0, 200),
+        coverImage,
         category: data.category || 'News',
         author: data.author,
         content,
@@ -102,12 +114,14 @@ export function getNewsPost(locale: Locale, slug: string): NewsPost | null {
   const fileContents = fs.readFileSync(filePath, 'utf8')
   const { data, content } = matter(fileContents)
 
+  const coverImage = data.coverImage || data.image || '/images/news/placeholder.jpg'
+
   return {
     slug,
     title: data.title || '',
     date: data.date || '',
-    excerpt: data.excerpt || '',
-    coverImage: data.coverImage || '/images/news/placeholder.jpg',
+    excerpt: data.excerpt || content.trim().split('\n')[0].substring(0, 200),
+    coverImage,
     category: data.category || 'News',
     author: data.author,
     content,
