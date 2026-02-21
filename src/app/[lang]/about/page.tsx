@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { isValidLocale, type Locale } from '@/i18n/config'
 import { getDictionary } from '@/i18n/getDictionary'
@@ -32,19 +34,46 @@ export async function generateMetadata({ params }: AboutPageProps): Promise<Meta
   })
 }
 
+const teamMembers = [
+  { name: 'Djordje Djordjic',    role: 'CEO & Founder',                    photo: '/images/team/001_Djordje_Djordjic.png',    linkedin: 'https://www.linkedin.com/in/djordje-djordjic-a0a42994/' },
+  { name: 'Sasa Trsic',          role: 'Head of 3D',                        photo: '/images/team/002_Sasa_Trsic.png',           linkedin: 'https://www.linkedin.com/in/sasatrsic/' },
+  { name: 'Stefan Stankovic',    role: 'Lead Unreal Engine Developer',       photo: '/images/team/003_Stefan_Stankovic.png',     linkedin: 'https://www.linkedin.com/in/stefanstankovic98/' },
+  { name: 'Ivan Kocic',          role: 'Lead Godot Developer',               photo: '/images/team/004_Ivan_Kocic.png',           linkedin: 'https://www.linkedin.com/in/ivan-kocic-140762244/' },
+  { name: 'Angelina Djordjic',   role: 'HR Manager',                         photo: '/images/team/005_Angelina_Djordjic.png',    linkedin: 'https://www.linkedin.com/in/angelina-djordjic-136b47237/' },
+  { name: 'Mirjana Markovic',    role: 'Project Manager',                    photo: '/images/team/006_Mirjana_Markovic.png',     linkedin: 'https://www.linkedin.com/in/mirjana-m-03a072224/' },
+  { name: 'Kristina Markovic',   role: 'Marketing Manager',                  photo: '/images/team/007_Kristina_Markovic.png',    linkedin: 'https://www.linkedin.com/in/kristina-markovic-9064061bb/' },
+  { name: 'Simone Vesic Majkic', role: 'Marketing Specialist',               photo: '/images/team/008_Simone_Vesic.png',         linkedin: 'https://www.linkedin.com/in/simonemajkic/' },
+  { name: 'Lazar Lakusic',       role: 'Full Stack Web Developer',           photo: '/images/team/009_Lazar_Lakusic.png',        linkedin: 'https://www.linkedin.com/in/lazar-laku%C5%A1i%C4%87-a96048185/' },
+  { name: 'Oleg Svynarchuk',     role: 'Front End Web Developer',            photo: '/images/team/010_Oleg_Svinarcuk.png',       linkedin: 'https://www.linkedin.com/in/olegsvynarchuk/' },
+  { name: 'Andreas Mehner',      role: 'Front End Web Developer',            photo: '/images/team/011_Andreas_Mehner.png',       linkedin: 'https://www.linkedin.com/in/andreas-mehner/' },
+  { name: 'Djordje Stojanovic',  role: 'Full Stack Web Developer',           photo: '/images/team/unknown.png',                  linkedin: null },
+  { name: 'Bogdan Jocic',        role: 'Godot Developer',                    photo: '/images/team/013_Bogdan_Jocic.png',         linkedin: 'https://www.linkedin.com/in/bogdan-jocic/' },
+  { name: 'Aleksa Stefanovic',   role: 'Godot Developer',                    photo: '/images/team/014_Aleksa_Stefanovic.png',    linkedin: 'https://www.linkedin.com/in/aleksa-stefanovic-/' },
+  { name: 'Srdjan Krsman',       role: 'Unity Engine Developer',             photo: '/images/team/015_Srdjan_Krsman.png',        linkedin: 'https://www.linkedin.com/in/srdjan-krsman/' },
+  { name: 'Marko-Marek Markovic',role: '3D Artist',                          photo: '/images/team/unknown.png',                  linkedin: 'https://www.linkedin.com/in/marko-marek-markovi%C4%87-50704819b/' },
+  { name: 'Vladan Falcic',       role: 'Blockchain Advisor',                 photo: '/images/team/018_Vladan_Falcic.png',        linkedin: 'https://www.linkedin.com/in/vladan-falcic-sqcap/' },
+  { name: 'Aleksandar Markovic', role: 'UX/UI Designer',                     photo: '/images/team/019_Aleksandar_Markovic.png',  linkedin: 'https://www.linkedin.com/in/aleksandar-markovic-graphic-designer/' },
+  { name: 'Luka Smiljanic',      role: '3D Animator',                        photo: '/images/team/020_Luka_Smiljanic.png',       linkedin: 'https://www.linkedin.com/in/lukasmiljanic/' },
+  { name: 'Teodora Stojanovic',  role: 'Graphic Designer',                   photo: '/images/team/teodora.png',                  linkedin: 'https://www.linkedin.com/in/teodora-stojanovi%C4%87-2658b51b6/' },
+  { name: 'Nenad Josic',         role: 'Infrastructure Manager',             photo: '/images/team/022_Nenad_Josic.png',          linkedin: 'https://www.linkedin.com/in/nenad-josic-devops/' },
+  { name: 'Vuk Dzakovic',        role: 'Unreal Engine Developer',            photo: '/images/team/unknown.png',                  linkedin: null },
+  { name: 'Nemanja Stojanovic',  role: 'Unreal Engine Developer',            photo: '/images/team/unknown.png',                  linkedin: null },
+  { name: 'Nemanja Simonovic',   role: 'Unreal Engine Network Specialist',   photo: '/images/team/unknown.png',                  linkedin: null },
+]
+
 const testimonials = [
   {
-    quote: 'Working with Pixels2Pixels Studio has been an incredible experience. We had two projects with very tight deadlines, and while taking on such risks is never easy, Sasa and Djordje delivered beyond expectations. Their professionalism, creativity, and ability to work under pressure are unmatched. They\'ve proven that they can be trusted to meet deadlines and maintain the highest quality standards.',
+    quote: 'Working with Pixels2Pixels Studio has been an incredible experience. We had two projects with very tight deadlines, and while taking on such risks is never easy, Sasa and Djordje delivered beyond expectations. Their professionalism, creativity, and ability to work under pressure are unmatched.',
     author: 'Sergey Martinov',
     role: 'CEO, Art Energy',
   },
   {
-    quote: 'Pixels2Pixels Studio has been more than just a collaborator — they\'re a true partner and advisor for Cosmic Factions. Djordje and his team always deliver exceptional results, no matter the challenge or complexity of the project. Their ability to combine creativity, technical expertise, and a deep understanding of our vision has been pivotal to our success.',
+    quote: 'Pixels2Pixels Studio has been more than just a collaborator — they\'re a true partner and advisor for Cosmic Factions. Djordje and his team always deliver exceptional results, no matter the challenge or complexity of the project.',
     author: 'Vladan Falcic',
     role: 'CEO, Cosmic Factions',
   },
   {
-    quote: 'Working with Pixels2Pixels Studio for the past 4-5 years has been an incredible journey. Their ability to consistently deliver high-quality creative solutions, even within tight deadlines, is unmatched. The team\'s expertise, dedication, and innovative approach have made every project we\'ve collaborated on a success.',
+    quote: 'Working with Pixels2Pixels Studio for the past 4-5 years has been an incredible journey. Their ability to consistently deliver high-quality creative solutions, even within tight deadlines, is unmatched.',
     author: 'David Granite',
     role: 'Creative Technologist, Dorier Group',
   },
@@ -61,23 +90,6 @@ export default async function AboutPage({ params }: AboutPageProps) {
     { name: 'Home', url: `${siteUrl}/${locale}` },
     { name: dict.nav.about, url: `${siteUrl}/${locale}/about` },
   ])
-
-  const teamMembers = [
-    {
-      name: 'Djordje',
-      role: locale === 'sr' ? 'Osnivač & CEO' : 'Founder & CEO',
-      bio: locale === 'sr'
-        ? 'Vizionar i tehnički direktor studija sa više od 10 godina iskustva u kreativnoj tehnologiji. Djordje vodi svaki projekat sa dubokim tehničkim znanjem i strašću za inovacijom.'
-        : 'Visionary and technical director of the studio with over 10 years of experience in creative technology. Djordje leads every project with deep technical knowledge and a passion for innovation.',
-    },
-    {
-      name: 'Sasa',
-      role: locale === 'sr' ? 'Kreativni Direktor' : 'Creative Director',
-      bio: locale === 'sr'
-        ? 'Kreativni um iza vizuelnog identiteta i dizajnerskih rešenja studija. Sasa kombinuje umetnički senzibilitet sa tehničkim razumevanjem da bi stvorio iskustva koja ostavljaju trajan utisak.'
-        : 'The creative mind behind the studio\'s visual identity and design solutions. Sasa combines artistic sensibility with technical understanding to create experiences that leave a lasting impression.',
-    },
-  ]
 
   return (
     <>
@@ -106,13 +118,15 @@ export default async function AboutPage({ params }: AboutPageProps) {
               {dict.about.title}
             </h1>
             <p className="text-brand-gray text-xl leading-relaxed">
-              {dict.about.intro}
+              {locale === 'en'
+                ? 'Pixels2Pixels Studio is a creative technology company at the intersection of art and innovation. We specialize in VR development, 3D animation, game development, and interactive digital experiences — crafting immersive worlds that push creative and technological boundaries.'
+                : 'Pixels2Pixels Studio je kreativna tehnološka kompanija na preseku umetnosti i inovacije. Specijalizovani smo za VR razvoj, 3D animaciju, razvoj igara i interaktivna digitalna iskustva.'}
             </p>
           </div>
         </div>
       </section>
 
-      {/* Our Story — SEO-rich text block */}
+      {/* Our Story */}
       <section className="section-padding bg-brand-dark-2">
         <div className="section-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -127,25 +141,22 @@ export default async function AboutPage({ params }: AboutPageProps) {
                 {locale === 'en' ? (
                   <>
                     <p>
-                      Founded by a small group of passionate developers and artists, Pixels2Pixels Studio was born from a shared vision: to create digital experiences that were not only technically brilliant but also deeply human. We saw the potential for technology to connect worlds, tell stories, and solve complex problems in ways that were previously unimaginable.
+                      Founded by Djordje Djordjic and Sasa Trsic, Pixels2Pixels Studio was born from a shared vision: to create digital experiences that were not only technically brilliant but also deeply human. From humble beginnings as a boutique game development studio, we have grown into a full-spectrum creative technology partner with a global client base in Switzerland, Germany, the US, and beyond.
                     </p>
                     <p>
-                      From our humble beginnings as a boutique game development studio, we have grown into a full-spectrum creative technology partner. Our journey has been one of constant learning, adaptation, and a relentless pursuit of excellence. Today, we are proud to have partnered with a diverse range of clients — from ambitious startups to global enterprises — helping them navigate the ever-evolving digital landscape.
+                      With a team of highly skilled Unreal Engine and Godot developers, 3D artists, and digital strategists, we help businesses, brands, and innovators transform ideas into engaging, interactive solutions. Whether you need cutting-edge virtual reality experiences, high-quality 3D visualizations, or blockchain-integrated applications, we bring your vision to life with precision and creativity.
                     </p>
                     <p>
-                      Pixels2Pixels Studio specializes in creating cutting-edge <strong className="text-white">VR and AR (XR) applications</strong> for businesses, education, entertainment, and beyond. Our passion lies in blending technology and creativity to push the boundaries of what&apos;s possible. Every project we take on is an opportunity to innovate, to challenge conventions, and to deliver something truly extraordinary.
+                      Today, our team of <strong className="text-white">24 specialists</strong> covers every discipline — from VR/AR development and game engineering to 3D art, web development, marketing, and infrastructure — making us one of the most versatile creative technology studios in the region.
                     </p>
                   </>
                 ) : (
                   <>
                     <p>
-                      Osnovan od strane male grupe strastvenih programera i umetnika, Pixels2Pixels Studio je rođen iz zajedničke vizije: stvaranje digitalnih iskustava koja su ne samo tehnički briljantna, već i duboko ljudska. Videli smo potencijal tehnologije da povezuje svetove, priča priče i rešava složene probleme.
+                      Osnovan od strane Djordja Djordjica i Saše Tršića, Pixels2Pixels Studio je nastao iz zajedničke vizije: stvaranje digitalnih iskustva koja su ne samo tehnički briljantna, već i duboko ljudska. Od skromnih početaka kao boutique studio za razvoj igara, izrasli smo u kreativnog tehnološkog partnera sa globalnom bazom klijenata u Švajcarskoj, Nemačkoj, SAD-u i šire.
                     </p>
                     <p>
-                      Od naših skromnih početaka kao butik studija za razvoj igara, izrasli smo u kreativnog tehnološkog partnera sa punim spektrom usluga. Naše putovanje je bilo putovanje stalnog učenja, prilagođavanja i neumorne težnje ka izvrsnosti. Danas smo ponosni što smo sarađivali sa raznolikim klijentima — od ambicioznih startapa do globalnih preduzeća.
-                    </p>
-                    <p>
-                      Pixels2Pixels Studio se specijalizuje za kreiranje naprednih <strong className="text-white">VR i AR (XR) aplikacija</strong> za preduzeća, obrazovanje, zabavu i šire. Naša strast leži u mešanju tehnologije i kreativnosti kako bismo pomerali granice mogućeg.
+                      Sa timom od <strong className="text-white">24 specijaliste</strong> koji pokrivaju svaku disciplinu — od VR/AR razvoja i inženjeringa igara do 3D umetnosti, web razvoja, marketinga i infrastrukture — mi smo jedan od najsvestranijih kreativnih tehnoloških studija u regionu.
                     </p>
                   </>
                 )}
@@ -158,17 +169,15 @@ export default async function AboutPage({ params }: AboutPageProps) {
                 { value: '2014', label: locale === 'sr' ? 'Godina Osnivanja' : 'Founded' },
                 { value: '50+', label: locale === 'sr' ? 'Projekata' : 'Projects Delivered' },
                 { value: '30+', label: locale === 'sr' ? 'Zadovoljnih Klijenata' : 'Happy Clients' },
-                { value: '8', label: locale === 'sr' ? 'Oblasti Ekspertize' : 'Areas of Expertise' },
+                { value: '24', label: locale === 'sr' ? 'Članova Tima' : 'Team Members' },
               ].map((stat) => (
                 <div key={stat.label} className="glow-border rounded-xl p-6 bg-brand-dark-3/50 text-center">
                   <div className="text-3xl font-black text-brand-blue mb-2">{stat.value}</div>
                   <div className="text-brand-gray text-sm">{stat.label}</div>
                 </div>
               ))}
-
-              {/* Mission statement card */}
               <div className="col-span-2 card-base p-6">
-                <h3 className="text-white font-bold mb-2 text-sm tracking-wider uppercase text-brand-blue">
+                <h3 className="text-brand-blue font-bold mb-2 text-sm tracking-wider uppercase">
                   {locale === 'sr' ? 'Naša Misija' : 'Our Mission'}
                 </h3>
                 <p className="text-brand-gray text-sm leading-relaxed italic">
@@ -190,11 +199,6 @@ export default async function AboutPage({ params }: AboutPageProps) {
             <h2 className="text-3xl font-black text-white mb-4">
               {locale === 'sr' ? 'Principi Kojima Se Vodimo' : 'Principles We Live By'}
             </h2>
-            <p className="text-brand-gray text-lg max-w-2xl mx-auto">
-              {locale === 'en'
-                ? 'These are not just words on a wall — they are the guiding principles that shape every decision we make, every line of code we write, and every pixel we place.'
-                : 'Ovo nisu samo reči na zidu — to su vodeći principi koji oblikuju svaku odluku koju donosimo, svaki red koda koji pišemo i svaki piksel koji postavljamo.'}
-            </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {dict.about.valuesItems.map((value, index) => (
@@ -220,21 +224,42 @@ export default async function AboutPage({ params }: AboutPageProps) {
             </h2>
             <p className="text-brand-gray text-lg max-w-2xl mx-auto">
               {locale === 'en'
-                ? 'Our team is our greatest asset — a diverse group of developers, artists, designers, and strategists united by a shared passion for creative technology.'
-                : 'Naš tim je naša najveća vrednost — raznolika grupa programera, umetnika, dizajnera i stratega ujedinjenih zajedničkom strašću prema kreativnoj tehnologiji.'}
+                ? 'A dynamic group of creatives, technologists, and strategists dedicated to bringing bold ideas to life.'
+                : 'Dinamična grupa kreativaca, tehnologa i stratega posvećenih oživljavanju smjelih ideja.'}
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
             {teamMembers.map((member) => (
-              <div key={member.name} className="card-base p-8 text-center">
-                <div className="w-20 h-20 rounded-full bg-brand-blue/10 border-2 border-brand-blue/30 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-brand-blue font-black text-2xl">
-                    {member.name.charAt(0)}
-                  </span>
+              <div key={member.name} className="card-base p-4 flex flex-col items-center text-center group">
+                {/* Photo */}
+                <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-brand-blue/30 group-hover:border-brand-blue/70 transition-colors mb-3 flex-shrink-0">
+                  <Image
+                    src={member.photo}
+                    alt={member.name}
+                    fill
+                    className="object-cover"
+                    sizes="80px"
+                  />
                 </div>
-                <h3 className="text-white font-bold text-lg mb-1">{member.name}</h3>
-                <div className="text-brand-blue text-sm font-medium mb-3">{member.role}</div>
-                <p className="text-brand-gray text-sm leading-relaxed">{member.bio}</p>
+                {/* Name */}
+                <h3 className="text-white font-bold text-xs leading-tight mb-1">{member.name}</h3>
+                {/* Role */}
+                <p className="text-brand-blue text-xs leading-tight mb-2">{member.role}</p>
+                {/* LinkedIn */}
+                {member.linkedin && (
+                  <Link
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="opacity-40 hover:opacity-100 transition-opacity"
+                    aria-label={`${member.name} LinkedIn`}
+                  >
+                    <svg className="w-4 h-4 text-brand-blue" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                  </Link>
+                )}
               </div>
             ))}
           </div>
@@ -258,9 +283,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
                 <svg className="w-8 h-8 text-brand-blue opacity-50 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
-                <p className="text-brand-gray text-sm leading-relaxed flex-1 italic">
-                  {t.quote}
-                </p>
+                <p className="text-brand-gray text-sm leading-relaxed flex-1 italic">{t.quote}</p>
                 <div className="border-t border-brand-blue/10 pt-4">
                   <div className="text-white font-bold text-sm">{t.author}</div>
                   <div className="text-brand-blue text-xs">{t.role}</div>
